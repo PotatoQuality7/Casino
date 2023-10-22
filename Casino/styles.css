@@ -1,16 +1,91 @@
-#bordas {
-	width: 1100px;
-	height: 900px;
-	border: solid rgba(70,70,70,1) 26px;
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 96%;
+	height: 95%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: -1.5%;
+	left: 2%;
 }
 
 .jogos {
-	width: 100px;
-	height: 100px;
+	width: 180px;
+	height: 180px;
+	background: black;
+	color: white;
+	position: relative;
+	top: 10px;
+	z-index: 2;
+}
+
+.bordas {
+	width: 200px;
+	height: 200px;
+	background: repeating-linear-gradient(-45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
+	position: absolute;
+	z-index: 1;
+}
+
+#borda-1, #borda-2, #borda-3 {
+	top: 280px;
+}
+
+#borda-4, #borda-5, #borda-6 {
+	top: 580px;
+}
+
+#borda-1 {
+	left: 12%;
+}
+
+#borda-2 {
+	left: 41%;
+}
+
+#borda-3 {
+	left: 70%;
+}
+
+#borda-4 {
+	left: 12%;
+}
+
+#borda-5 {
+	left: 41%;
+}
+
+#borda-6 {
+	left: 70%;
 }
 
 .flutuantes {
 	width: 120px;
 	height: 30px;
 	position: absolute;
+	z-index: 0;
+}
+
+#cortina-l, #cortina-r {
+	position: relative;
+	width: 19.5vw;
+	height: 100vh;
+}
+
+#cortina-l {
+	background: black;
+	top: -385px;
+	left: -400px;
+}
+
+#cortina-r {
+	background: black;
+	top: -1335px;
+	left: 1127px;
 }
