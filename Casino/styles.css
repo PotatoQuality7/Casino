@@ -7,12 +7,13 @@
 }
 
 #tela {
-	width: 96%;
-	height: 95%;
+	width: 98%;
+	height: 98%;
 	background: rgb(40,44,52);
 	position: relative;
-	top: -1.5%;
-	left: 2%;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
 }
 
 .jogos {
@@ -32,7 +33,7 @@
 	position: absolute;
 	z-index: 1;
 }
-
+/*
 #borda-1, #borda-2, #borda-3 {
 	top: 280px;
 }
@@ -64,7 +65,7 @@
 #borda-6 {
 	left: 70%;
 }
-
+*/
 .flutuantes {
 	width: 120px;
 	height: 30px;
@@ -73,19 +74,19 @@
 }
 
 #cortina-l, #cortina-r {
-	position: relative;
-	width: 19.5vw;
+	position: absolute;
+	width: 18.75vw;
 	height: 100vh;
+	display: inline-block;
+	top: 0px;
 }
 
 #cortina-l {
 	background: black;
-	top: -385px;
-	left: -400px;
+	left: 0px;
 }
 
 #cortina-r {
 	background: black;
-	top: -1335px;
-	left: 1127px;
+	right: 0px;
 }

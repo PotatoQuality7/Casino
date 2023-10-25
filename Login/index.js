@@ -4,7 +4,9 @@ import Casino from '../Casino/index.js';
 
 function Login() {
 	
-	var time = 100;
+	var time = 2000;
+	const [display, setDisplay] = useState("block");
+	const [conteudo, setConteudo] = useState("");
 /*	const [nome, setNome] = useState("");
 	const [email, setEmail] = useState("");
 	const [date, setDate] = useState("");
@@ -37,27 +39,33 @@ function Login() {
 		setAlgo(e.target.value);
 	}*/
 
+	function entrar() {
+		//alert("Hello");
+		setDisplay("none");
+		setConteudo(<Casino />);		
+	}
+
 	function ArcadeMaquininha() {
 
-		const [display, setDisplay] = useState("block");
-		const [conteudo, setConteudo] = useState("");
+		const [displayL, setDisplayL] = useState("block");
+		const [conteudoL, setConteudoL] = useState("");
 
 		setTimeout(() => {
-			setDisplay("none");
+			setDisplayL("none");
 			if (logado != "true")
-				setConteudo(<Maquininha />);
+				setConteudoL(<Maquininha />);
 			 else
-				setConteudo(<Casino />);
+				entrar();
 		}, time)
 
 		return (
 			<div>
-				<div style={{"display": display }}>
+				<div style={{"display": displayL }}>
 				<h1>Arcade e Maquininha Laser</h1>
 				<h2 style={{"display": logado == "true"? "block" : "none"}}>Autenticado com sucesso</h2>
 				<h2 style={{"display": logado == "false"? "block" : "none"}}>Falha na autenticacao</h2>
 				</div>
-				{conteudo}
+				{conteudoL}
 			</div>
 			
 		)
@@ -65,18 +73,18 @@ function Login() {
 
 	function Maquininha() {
 		
-		const [display, setDisplay] = useState("block");
-		const [conteudo, setConteudo] = useState("");
+		const [displayL, setDisplayL] = useState("block");
+		const [conteudoL, setConteudoL] = useState("");
 
 		setTimeout(() => {
-			setDisplay("none");
-			setConteudo(<TelaLogin />);
+			setDisplayL("none");
+			setConteudoL(<TelaLogin />);
 		}, time)
 		
 		return (
 			<div>
-				<h1 style={{"display": display}}>Maquininha Laser</h1>
-				{conteudo}
+				<h1 style={{"display": displayL}}>Maquininha Laser</h1>
+				{conteudoL}
 			</div>
 		)
 	}
@@ -84,8 +92,8 @@ function Login() {
 	function TelaLogin() {
 
 		const [nome,setNome] = useState("Algoo");
-		const [conteudo,setConteudo] = useState("");
-		const [display,setDisplay] = useState("block");
+		const [conteudoL,setConteudoL] = useState("");
+		const [displayL,setDisplayL] = useState("block");
 		const [senha,setSenha] = useState("Algoo");
 
 		const upNome = (e) => {
@@ -97,18 +105,18 @@ function Login() {
 		}
 
 		function cadastrar() {
-			setDisplay("none");
-			setConteudo(<TelaCadastro />);
+			setDisplayL("none");
+			setConteudoL(<TelaCadastro />);
 		}
 
 		function logar() {
-			setDisplay("none");
-			setConteudo(<Tokenizador />);
+			setDisplayL("none");
+			setConteudoL(<Tokenizador />);
 		}
 
 		return (
 			<div>
-				<div style={{"display": display}}>
+				<div style={{"display": displayL}}>
 					<h1>Tela de Login</h1>
 					
 					<label>Nome do Jogador</label>
@@ -119,7 +127,7 @@ function Login() {
 					<button onClick={cadastrar}>Cadastrar-me</button>
 					<button onClick={logar}>Login</button>
 				</div>
-				{conteudo}
+				{conteudoL}
 			</div>
 		)		
 	}
@@ -131,8 +139,8 @@ function Login() {
 		const [date,setDate] = useState("");
 		const [senha,setSenha] = useState("");
 		const [csenha,setCSenha] = useState("");
-		const [conteudo,setConteudo] = useState("");
-		const [display,setDisplay] = useState("block");
+		const [conteudoL,setConteudoL] = useState("");
+		const [displayL,setDisplayL] = useState("block");
 
 		const upNome = (e) => {
 			setNome(e.target.value);
@@ -155,18 +163,18 @@ function Login() {
 		}
 
 		function voltar() {
-			setDisplay("none");
-			setConteudo(<TelaLogin />);
+			setDisplayL("none");
+			setConteudoL(<TelaLogin />);
 		}
 		
 		function cadastrar() {
-			setDisplay("none");
-			setConteudo(<Tokenizador />);
+			setDisplayL("none");
+			setConteudoL(<Tokenizador />);
 		}
 
 		return (
 			<div>
-				<div style={{"display": display}}>
+				<div style={{"display": displayL}}>
 					<h1>Tela de Cadastro</h1>
 					
 					<label>Nome de Jogador</label>
@@ -183,27 +191,27 @@ function Login() {
 					<button onClick={voltar}>Voltar</button>
 					<button onClick={cadastrar}>Cadastrar-me</button>
 				</div>
-				{conteudo}
+				{conteudoL}
 			</div>
 		)
 	}
 
 	function Tokenizador() {
-		const [conteudo,setConteudo] = useState("");
-		const [display,setDisplay] = useState("block");
+		const [conteudoL,setConteudoL] = useState("");
+		const [displayL,setDisplayL] = useState("block");
 
 		setTimeout(() => {
-			setDisplay("none");
-			setConteudo(<ArcadeMaquininha />);
+			setDisplayL("none");
+			setConteudoL(<ArcadeMaquininha />);
 			setLogado("true");
 		}, time)
 
 		return (
 			<div>
-				<div style={{"display": display}}>
+				<div style={{"display": displayL}}>
 					<h1>Tokenizador</h1>
 				</div>
-				{conteudo}
+				{conteudoL}
 			</div>
 		)
 	}
@@ -211,7 +219,10 @@ function Login() {
 	return (
 		<div>
 			<title>Tela de Login</title>
-			<ArcadeMaquininha />
+			<div style={{"display": display}}>
+				<ArcadeMaquininha />
+			</div>
+			{conteudo}
 		</div>
 	)
 }
