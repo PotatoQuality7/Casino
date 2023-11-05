@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './Login/index.js';
-import Casino from './Casino/index.js';
+import Login from './Login/index.jsx';
+import Casino from './Casino/index.jsx';
 
 function App() {
 

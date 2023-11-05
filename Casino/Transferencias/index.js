@@ -1,6 +1,6 @@
 import "./styles.css";
 import { useState, useEffect, React } from "react";
-import Casino from "../index.js";
+import Casino from "../index.jsx";
 
 function Transferencias() {
 	

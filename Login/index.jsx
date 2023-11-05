@@ -1,6 +1,6 @@
 import './styles.css';
 import { useState } from 'react';
-import Casino from '../Casino/index.js';
+import Casino from '../Casino/index.jsx';
 
 function Login() {
 	

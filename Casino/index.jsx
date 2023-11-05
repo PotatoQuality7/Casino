@@ -1,6 +1,7 @@
 import "./styles.css";
+import Canvas from "./script.js";
 import { useState, useEffect, React } from "react";
-import Login from "../Login/index.js";
+import Login from "../Login/index.jsx";
 
 import Perfil from "./Perfil/index.js";
 import Estatisticas from "./Estatisticas/index.js";
@@ -16,7 +17,7 @@ import SkatePong from "./Jogos/SkatePong/index.js";
 import Tetris from "./Jogos/Tetris/index.js";
 
 function Casino() {
-	
+
 	const [conteudo,setConteudo] = useState("");
 	const [display,setDisplay] = useState("block");
 
@@ -322,10 +323,11 @@ function Casino() {
 					  let pattern = "repeating-linear-gradient(-45deg, "+cor1+" 5px, "+cor1+", "+cor2+" 10px, "+cor2+", "+cor1+" 15px)";
 		              el.style.setProperty("background", pattern, 'important'); }}}>
 				<div id="tela">
+					<Canvas />
 					<div style={{"display": displayM}}>
 						<div>
-							<h1>Casino</h1>
-							<button onClick={logout}>POWER</button>
+							<h1 id="titulo">Casino</h1>
+							<button id="power" onClick={logout}>POWER</button>
 							<div>
 								<div id="borda-1" className="bordas" ref={el => {
 						            if (el) {
@@ -475,6 +477,7 @@ function Casino() {
 			</div>
 		</div>
 	)
+
 }
 
 export default Casino;
