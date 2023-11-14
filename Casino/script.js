@@ -6,22 +6,23 @@ function Canvas() {
 
 	let width, height, ctx;
 	let cores = [];
+	//const quads = 30;
 	const quads = 30;
 	let pos = -1, integrantes = 0;
 	var biscoito;
 
-	function kickStart() {}	
-
 	function totobolarCor() {
-		let rgb = "rgba("+Math.random()*256+","+Math.random()*256+","+Math.random()*256+",0.1)";
-		integrantes = (Math.random()*11)+5;
+		let rgb = "rgba("+Math.random()*256+","+Math.random()*256+","+Math.random()*256+",";
+		//integrantes = (Math.random()*11)+8;
+		integrantes = (Math.random()*(quads/3))+8;
 		let a = 1, k = a/integrantes;
 		for (let i = pos; i < pos+integrantes; i++) {
-			cores[i] = rgb;
+			cores[i] = rgb+a+")";
+			a -= k;
 		}
 		clearInterval(biscoito);
 		setTimeout(() => {
-			biscoito = setInterval(shiftar,(Math.random()*131)+70);
+			biscoito = setInterval(shiftar,(Math.random()*131)+40);
 		}, Math.random()*7000);
 
 	}
@@ -36,16 +37,18 @@ function Canvas() {
 			if (i < 0)
 				continue;
 			cores[i-1] = cores[i];
+			ctx.clearRect(0,(i-1)*quads,canvas.width,width,height);
+			ctx.fillStyle = cores[i-1];
 			for (let j = 0; j <= quads+3; j++) {
-				ctx.fillStyle = cores[i-1];
 				ctx.fillRect((j*quads)+(j*6),(i-1)*quads,width,height);
 			}
 		}
 		pos--;
 	}
+	let canvas;
 
 	useEffect(() => {
-	    const canvas = canvasRef.current;
+	    canvas = canvasRef.current;
 	    ctx = canvas.getContext('2d');
 
 	    ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -57,7 +60,7 @@ function Canvas() {
 		width = (canvas.width/quads) - 6;
 		height = (canvas.height/quads) - 6;
 
-		for (let i = 0; i <= quads+18; i++)
+		for (let i = 0; i <= quads+21; i++)
 			cores.push("black");
 		
 		for (let i = 0; i <= quads+1; i++) {

@@ -21,6 +21,9 @@ function Casino() {
 	const [conteudo,setConteudo] = useState("");
 	const [display,setDisplay] = useState("block");
 
+	const [conteudoM,setConteudoM] = useState("");
+	const [displayM,setDisplayM] = useState("block");
+
 	var atual = 0;
 	var limite = 0;
 	var dir = [];
@@ -97,14 +100,11 @@ function Casino() {
 	}
 
 	const voltar = (e) => {
-		setConteudo("");
-		setDisplay("block");
+		setConteudoM("");
+		setDisplayM("block");
 	}
 
 	function Menu() {
-
-		const [conteudoM,setConteudoM] = useState("");
-		const [displayM,setDisplayM] = useState("block");
 
 		const [nome,setNome] = useState("Algoo");
 		const [senha,setSenha] = useState("Algoo");
@@ -323,8 +323,7 @@ function Casino() {
 					  let pattern = "repeating-linear-gradient(-45deg, "+cor1+" 5px, "+cor1+", "+cor2+" 10px, "+cor2+", "+cor1+" 15px)";
 		              el.style.setProperty("background", pattern, 'important'); }}}>
 				<div id="tela">
-					<Canvas />
-					<div style={{"display": displayM}}>
+						<Canvas />
 						<div>
 							<h1 id="titulo">Casino</h1>
 							<button id="power" onClick={logout}>POWER</button>
@@ -443,18 +442,14 @@ function Casino() {
 									<form action="" method="POST">
 											<label>Aposta</label>
 											<div style={{"background": "yellow", "width": "150px","height": "40px"}}>
-											<label id="aposta" style={{"display": "inline-block"}}>MZN
-</label>
+											<label id="aposta" style={{"display": "inline-block"}}>MZN</label>
 												<input id="apostaField" name="aposta" type="number" placeholder="MAX: 580" required />
-</div>
+											</div>
 										<button onClick={jogar}>Jogar</button>
 										<button>Tutorial</button>
 									</form>
 								</fieldset>
-							</div>
-						</div>
-						{conteudoM}
-						<button style={{"display": displayM == "none"? "block" : "none"}} onClick={voltarM}>Voltar</button>
+							</div>						
 				</div>
 			</div>
 		)		
@@ -462,20 +457,24 @@ function Casino() {
 
 	return (
 		<div>
-			{/*retirar esse useState*/}
+			{/*retirar esse useState
 			<div style={{"display": display}}>
 				<title>Tela do Menu</title>
-				<Menu />
-				<div>
-					<div id="cortina-l"></div>
-					<div id="cortina-r"></div>
+				<div style={{"display": displayM}}>
+					<Menu />
 				</div>
+				{conteudoM}
+
+				<div style={{"display": displayM == "block"? "none" : "block"}}>
+*/}
+<TorreBlocos />
+					{/*<h1>Prosseguir?</h1>
+						<button>Yes boss</button>
+						<button>Cancelar</button>*/}
+					<button onClick={voltar}>Voltar</button> 
+{/*				</div>
 			</div>
-			<div style={{"display": display == "block"? "none" : "block"}}>
-				{conteudo}
-				<button onClick={voltar}>Voltar</button> 
-			</div>
-		</div>
+*/}		</div>
 	)
 
 }

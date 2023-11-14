@@ -1,3 +1,4 @@
+import Torres from './script.js';
 import './styles.css';
 import { useState } from 'react';
 import Casino from '../../index.jsx';
@@ -10,8 +11,7 @@ function TorreBlocos() {
 	return (
 		<div>
 			{/*retirar esse useState*/}
-			<h1>Torre de Blocos</h1>
-			{conteudo}
+			<Torres />
 		</div>
 	)
 }

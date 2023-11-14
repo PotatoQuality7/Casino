@@ -83,24 +83,6 @@
 	z-index: 0;
 }
 
-#cortina-l, #cortina-r {
-	position: absolute;
-	width: 18.75vw;
-	height: 100vh;
-	display: inline-block;
-	top: 0px;
-}
-
-#cortina-l {
-	background: black;
-	left: 0px;
-}
-
-#cortina-r {
-	background: black;
-	right: 0px;
-}
-
 #detalhes {
 	position: absolute;
 	width: 320px;

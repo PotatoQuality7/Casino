@@ -9,6 +9,10 @@ function App() {
     <div className="App">
       <header className="App-header">
 			<Casino />
+				<div>
+                    <div id="cortina-l"></div>
+                    <div id="cortina-r"></div>
+                </div>
       </header>
     </div>
   );
