@@ -1,0 +1,61 @@
+package daw.todirverosol;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping(path="/demo")
+public class MainController {
+
+  @Autowired
+  private UserRepository userRepository;
+
+  @PostMapping(path="/add") 
+  public @ResponseBody String adicionarRestaurante(@RequestParam String nome, @RequestParam String tipo, @RequestParam String localizacao, @RequestParam Integer preco_minimo, @RequestParam Integer preco_maximo, @RequestParam String imagem, @RequestParam String detalhes, @RequestParam Integer estrelas, @RequestParam String avaliacao, @RequestParam String[] menu, @RequestParam Integer[] preco) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+
+    User rst = new User();
+    rst.setNome(nome);
+ 	rst.setTipo(tipo);
+    rst.setLocalizacao(localizacao);
+    rst.setPrecoMin(preco_minimo);
+    rst.setPrecoMax(preco_maximo);
+    rst.setImagem(imagem);
+    rst.setDetalhes(detalhes);
+    rst.setEstrelas(estrelas);
+    rst.setAvaliacao(avaliacao);
+    rst.setAvaliacao(avaliacao);
+    rst.setAvaliacao(avaliacao);
+    userRepository.save(rst);
+    return "Saved\n";
+  }
+
+  @GetMapping(path="/findAll")
+  public @ResponseBody Iterable<User> getAllUsers() {
+    return userRepository.findAll();
+  }
+
+  @GetMapping(path="/findById")
+  public @ResponseBody Object getById(@PathVariable(required = false) Integer id) {
+    return userRepository.findById(id);
+  }
+
+ 
+  @DeleteMapping(path="/deleteAll")
+  public @ResponseBody String delete() {
+    userRepository.deleteAll();
+    return "Tudo apagado\n";
+  }
+
+}

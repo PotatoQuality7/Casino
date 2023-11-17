@@ -1,18 +1,20 @@
 import './styles.css';
 import { useState } from 'react';
 import Casino from '../Casino/index.jsx';
+import JogadorService from '../Backend/services/JogadorService.js'
 
 function Login() {
 	
 	var time = 2000;
 	const [display, setDisplay] = useState("block");
 	const [conteudo, setConteudo] = useState("");
-/*	const [nome, setNome] = useState("");
+	const [jogador, setJogador] = useState();
+	const [nome, setNome] = useState("");
 	const [email, setEmail] = useState("");
 	const [date, setDate] = useState("");
 	const [senha, setSenha] = useState("");
 	const [csenha, setCSenha] = useState("");
-	*/const [logado, setLogado] = useState("");/*
+	const [logado, setLogado] = useState(2);
 
 	const upNome = (e) => {
 		setNome(e.target.value);
@@ -37,12 +39,13 @@ function Login() {
 	const [algo, setAlgo] = useState("");
 	const change = (e) => {
 		setAlgo(e.target.value);
-	}*/
+	}
 
 	function entrar() {
 		//alert("Hello");
-		setDisplay("none");
-		setConteudo(<Casino />);		
+		window.location = "/Casino";
+		/*setDisplay("none");
+		setConteudo(<Casino />);*/
 	}
 
 	function ArcadeMaquininha() {
@@ -52,18 +55,19 @@ function Login() {
 
 		setTimeout(() => {
 			setDisplayL("none");
-			if (logado != "true")
+			if (logado != true)
 				setConteudoL(<Maquininha />);
-			 else
+			 else {
 				entrar();
+			 }
 		}, time)
 
 		return (
 			<div>
 				<div style={{"display": displayL }}>
 				<h1>Arcade e Maquininha Laser</h1>
-				<h2 style={{"display": logado == "true"? "block" : "none"}}>Autenticado com sucesso</h2>
-				<h2 style={{"display": logado == "false"? "block" : "none"}}>Falha na autenticacao</h2>
+				<h2 style={{"display": logado == true? "block" : "none"}}>Autenticado com sucesso</h2>
+				<h2 style={{"display": logado == false? "block" : "none"}}>Falha na autenticacao</h2>
 				</div>
 				{conteudoL}
 			</div>
@@ -110,8 +114,18 @@ function Login() {
 		}
 
 		function logar() {
-			setDisplayL("none");
-			setConteudoL(<Tokenizador />);
+			JogadorService.getJogadores().then((res) => {
+				console.log(res.data);
+				setLogado(false);   
+	         	res.data.forEach((jgr) => {
+	                if (nome == jgr.nome && senha == jgr.senha) {
+						setLogado(true);
+						setJogador(jgr);
+					};
+	            });
+        	});
+/*			setDisplayL("none");
+			setConteudoL(<Tokenizador />);*/
 		}
 
 		return (
@@ -168,6 +182,12 @@ function Login() {
 		}
 		
 		function cadastrar() {
+			let jogador = {nome: nome, email: email, senha: senha, saldo: 0, imagem: "", lingua: "pt", animacao: true, som: 100, valores: [[0,0],[0,0],[0,0]]};
+				console.log("jogador => "+JSON.stringify(jogador));
+				JogadorService.adicionarJogador(jogador).then(res => {
+					alert("Ye boi");
+				});
+
 			setDisplayL("none");
 			setConteudoL(<Tokenizador />);
 		}
@@ -176,7 +196,6 @@ function Login() {
 			<div>
 				<div style={{"display": displayL}}>
 					<h1>Tela de Cadastro</h1>
-					
 					<label>Nome de Jogador</label>
 					<input type="text" onChange={upNome} />
 					<label>E-Mail</label>
@@ -203,7 +222,7 @@ function Login() {
 		setTimeout(() => {
 			setDisplayL("none");
 			setConteudoL(<ArcadeMaquininha />);
-			setLogado("true");
+			setLogado(true);
 		}, time)
 
 		return (

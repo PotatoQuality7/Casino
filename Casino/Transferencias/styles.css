@@ -1,0 +1,47 @@
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 98%;
+	height: 98%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
+}
+
+#titulo {
+	position: absolute;
+	top: 50px;
+	left: 42%;
+}
+
+#armazem-1 {
+	position: absolute;
+	width: 62vw;
+	height: 100vh;
+	left: 0px;
+	top: 0px;
+}
+
+#armazem-2 {
+	position: absolute;
+	width: 10vw;
+	height: 10vh;
+	left: 100px;
+	top: 100px;
+}
+
+#armazem-3 {
+	position: absolute;
+	width: 36vw;
+	height: 5vh;
+	left: 0px;
+	top: 130px;
+}

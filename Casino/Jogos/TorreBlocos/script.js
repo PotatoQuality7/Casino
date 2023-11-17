@@ -141,7 +141,7 @@ function Torres() {
 		else {
 		  clearInterval(batata);
 		  clearInterval(biscoito);
-		  clearInterval(camerar);
+		  clearInterval(camera);
 		  cor = "white";
 		  batata = setInterval(flash,120);
 		  //locksetas and run it down to the floor then, you lose

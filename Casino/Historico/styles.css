@@ -1,0 +1,181 @@
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 98%;
+	height: 98%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
+}
+
+#titulo {
+	position: absolute;
+	top: 50px;
+	left: 37%;
+}
+
+#voltar {
+	position: absolute;
+	top: 10px;
+	right: 40px;
+}
+
+#container {
+	width: 50vw;
+	height: 70vh;
+	border-left: white 5px solid;
+	border-top: white 5px solid;
+	border-right: white 5px solid;
+	position: relative;
+	top: 20%;
+	left: 9%;
+	transform: rotate(180deg);
+}
+
+.jogos {
+	background: purple;
+	width: 9.8%;
+	position: absolute;
+	top: -5px;
+	border: white 5px solid;
+	overflow: hidden;
+}
+
+#jogo-1 {
+	/*background: blue;*/
+	left: 85%;
+}
+
+#jogo-2 {
+	/*background: orange;*/
+	left: 69%;
+}
+
+#jogo-3 {
+	/*background: yellow;*/
+	left: 53%;
+}
+
+#jogo-4 {
+	/*background: green;*/
+	left: 37%;
+}
+
+#jogo-5 {
+	/*background: pink;*/
+	left: 21%;
+}
+
+#jogo-6 {
+	/*background: purple;*/
+	left: 5%;
+}
+
+
+.texto {
+	transform: rotate(150deg);
+	width: 100px;
+	position: absolute;
+	font-size: 17px;
+	color: white;
+	background: black;
+}
+
+#texto-1 {
+	top: -61px;
+	right: 4.5%;
+}
+
+#texto-2 {
+	top: -40px;
+	right: 20.5%;
+}
+
+#texto-3 {
+	top: -47px;
+	right: 36%;
+}
+
+#texto-4 {
+	top: -40px;
+	right: 52.5%;
+}
+
+#texto-5 {
+	top: -40px;
+	right: 68%;
+}
+
+#texto-6 {
+	top: -40px;
+	right: 84.5%;
+}
+
+#colapsar {
+	width: 50px;
+	height: 20px;
+	position: relative;
+	left: 483px;
+	top: 100px;
+	transform: rotate(150deg);
+	background: none;
+	border-top: cyan 4px solid;
+	border-bottom: cyan 4px solid;
+	border-right: cyan 0px solid;
+	border-left: cyan 0px solid;
+}
+
+.fill {
+	width: 100%;
+	position: relative;
+}
+
+.valor {
+	font-size: 15px;
+	background: black;
+	position: absolute;
+	transform: rotate(180deg);
+	font-size: 15px;
+}
+
+#valor-1 {
+	left: 86.6%;
+}
+
+#valor-2 {
+	left: 71%;
+}
+
+#valor-3 {
+	left: 55.5%;
+}
+
+#valor-4 {
+	left: 39.5%;
+}
+
+#valor-5 {
+	left: 23.5%;
+}
+
+#valor-6 {
+	left: 7.4%;
+}
+
+.lucro {
+	color: green;
+	display: inline-block;
+}
+
+.perda {
+	color: red;
+	display: inline-block;
+}

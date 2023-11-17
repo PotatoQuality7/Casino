@@ -1,0 +1,89 @@
+import React, { Component, useState } from 'react';
+import RestauranteService from '../services/RestauranteService.js';
+import App from '../App.js';
+
+
+class ListarRestaurantes extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			restaurantes: [],
+			display: "block",
+			displayD: "none",
+			selecionado: "",
+		}
+		const detalharRestaurante = (e) => {
+			alert(e.target.value);
+			setSelecionado(e.target.value);
+			setDisplay("none");
+		}
+
+		const voltarDetalhes = (e) => {
+			setSelecionado("");
+			setDisplay("block");
+		}
+
+		const campoAvaliacao = (e) => {
+			setDisplayD("block");
+		}
+	}
+	
+
+componentDidMount() {
+	RestauranteService.getRestaurantes().then((res) => {
+		this.setState({ restaurantes: res.data});
+	})
+}
+	render() {
+		return (
+			<div>
+				<div style={{"display": display}}>
+								<h2>Lista de Restaurantes</h2>
+								<table>
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Nome</th>
+											<th>Tipo</th>
+											<th>Localizacao</th>
+											<th>Preco Minimo</th>
+											<th>Preco Maximo</th>
+											<th>Foto</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+									{
+										this.state.restaurantes.map(
+											restaurante =>
+											<tr key = {restaurante.id}>
+												<td> {restaurante.id} </td>
+												<td> {restaurante.nome} </td>
+												<td> {restaurante.tipo} </td>
+												<td> {restaurante.localizacao} </td>
+												<td> {restaurante.precoMin} </td>
+												<td> {restaurante.precoMax} </td>
+												<td> <img src="{restaurante.imagem}" /> </td>
+												<button value={restaurante.id} onClick={detalharRestaurante}>Ver</button>
+											</tr>
+										)
+									}
+									</tbody>
+								</table>
+				</div>
+
+				<div style={{"display": "display" == "block"? "none" : "block"}}>
+						{
+							RestauranteService.getRestaurantes().then((res) => {
+								this.setState({ restaurantes: res.data});
+							})
+						
+						}
+
+				</div>
+			</div>
+		)
+	}
+}
+
+export default ListarRestaurantes;

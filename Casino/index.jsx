@@ -1,20 +1,6 @@
 import "./styles.css";
 import Canvas from "./script.js";
 import { useState, useEffect, React } from "react";
-import Login from "../Login/index.jsx";
-
-import Perfil from "./Perfil/index.js";
-import Estatisticas from "./Estatisticas/index.js";
-import Transferencias from "./Transferencias/index.js";
-import Documentacao from "./Documentacao/index.js";
- 
-import TorreBlocos from "./Jogos/TorreBlocos/index.js";
-import Bounce from "./Jogos/Bounce/index.js";
-import Cobrinha from "./Jogos/Cobrinha/index.js";
-import DungeonShip from "./Jogos/DungeonShip/index.js";
-import F1Race from "./Jogos/F1Race/index.js";
-import SkatePong from "./Jogos/SkatePong/index.js";
-import Tetris from "./Jogos/Tetris/index.js";
 
 function Casino() {
 
@@ -81,21 +67,24 @@ function Casino() {
 	var algo, biscoito, batata;
 
 	const logout = (e) => {
-		setConteudo(<Login />);
-		setDisplay("none");
+		/*setConteudo(<Login />);
+		setDisplay("none");*/
+		window.location = "/";
 	}
 		
 	const buttonClick = (e) => {
-		setDisplay("none");
+		//setDisplay("none");
 		switch (e.target.value) {
-			case "perfil": setConteudo(<Perfil />);
+			case "perfil": window.location = "./Casino/Perfil";
 						   break;
-			case "estatisticas": setConteudo(<Estatisticas />);
-						   break;
-			case "trans": setConteudo(<Transferencias />);
-						   break;
-			case "documentacao": setConteudo(<Documentacao />);
-						   break;
+			case "estatisticas": window.location = "./Casino/Estatisticas";
+						  		 break;
+			case "historico": window.location = "./Casino/Historico";
+						  		 break;
+			case "transferencias": window.location = "./Casino/Transferencias";
+						   		   break;
+			case "documentacao": window.location = "./Casino/Documentacao";
+						   		 break;
 		}
 	}
 
@@ -207,12 +196,12 @@ function Casino() {
 		const jogar = (e) => {
 			setDisplayM("none");
 			switch (escolhido) {
-				case "0": setConteudoM(<TorreBlocos />); break;		
-				case "1": setConteudoM(<Tetris />); break;		
-				case "2": setConteudoM(<SkatePong />); break;		
-				case "3": setConteudoM(<Cobrinha />); break;		
-				case "4": setConteudoM(<Bounce />); break;		
-				case "5": setConteudoM(<F1Race />); break;		
+				case "0": window.location = "./Jogos/TorreBlocos"; break;		
+				case "1": window.location = "./Jogos/Tetris"; break;		
+				case "2": window.location = "./Jogos/SkatePong"; break;		
+				case "3": window.location = "./Jogos/Cobrinha"; break;		
+				case "4": window.location = "./Jogos/Bounce"; break;		
+				case "5": window.location = "./Jogos/F1Race"; break;		
 			}
 		}
 
@@ -386,33 +375,33 @@ function Casino() {
 
 							<nav>
 								<button id="flt-1" className="flutuantes" value="perfil" onClick={buttonClick}
-								ref={el => {
-						            if (el) {
-						              el.style.setProperty('top', (flt[0].y+"px"), 'important');
-						              el.style.setProperty('left', (flt[0].x+"px"), 'important');
-						            }
-						     	 }}>Perfil</button>
+									ref={el => {
+							            if (el) {
+							              el.style.setProperty('top', (flt[0].y+"px"), 'important');
+							              el.style.setProperty('left', (flt[0].x+"px"), 'important');
+							            }
+							     	 }}>Perfil</button>
 								<button id="flt-2" className="flutuantes" value="estatisticas" onClick={buttonClick}
-								ref={el => {
-						            if (el) {
-						              el.style.setProperty('top', (flt[1].y+"px"), 'important');
-						              el.style.setProperty('left', (flt[1].x+"px"), 'important');
-						            }
-							     	 }}>Estatisticas</button>
-								<button id="flt-3" className="flutuantes" value="trans" onClick={buttonClick}
-								ref={el => {
-						            if (el) {
-						              el.style.setProperty('top', (flt[2].y+"px"), 'important');
-						              el.style.setProperty('left', (flt[2].x+"px"), 'important');
-						            }
-						     	 }}>Transferencias</button>
+									ref={el => {
+							            if (el) {
+							              el.style.setProperty('top', (flt[1].y+"px"), 'important');
+							              el.style.setProperty('left', (flt[1].x+"px"), 'important');
+							            }
+								     	 }}>Histórico</button>
+								<button id="flt-3" className="flutuantes" value="transferencias" onClick={buttonClick}
+									ref={el => {
+							            if (el) {
+							              el.style.setProperty('top', (flt[2].y+"px"), 'important');
+							              el.style.setProperty('left', (flt[2].x+"px"), 'important');
+							            }
+							     	 }}>Transferências</button>
 								<button id="flt-4" className="flutuantes" value="documentacao" onClick={buttonClick}
-								ref={el => {
-						            if (el) {
-						              el.style.setProperty('top', (flt[3].y+"px"), 'important');
-						              el.style.setProperty('left', (flt[3].x+"px"), 'important');
-						            }
-						     	 }}>Documentacao</button>						
+									ref={el => {
+							            if (el) {
+							              el.style.setProperty('top', (flt[3].y+"px"), 'important');
+							              el.style.setProperty('left', (flt[3].x+"px"), 'important');
+							            }
+							     	 }}>Documentação</button>						
 							</nav>
 
 							<div style={{"display": escolhido == null? "none": "inline-block"}}>
@@ -457,7 +446,7 @@ function Casino() {
 
 	return (
 		<div>
-			{/*retirar esse useState
+			{/*retirar esse useState*/}
 			<div style={{"display": display}}>
 				<title>Tela do Menu</title>
 				<div style={{"display": displayM}}>
@@ -466,15 +455,14 @@ function Casino() {
 				{conteudoM}
 
 				<div style={{"display": displayM == "block"? "none" : "block"}}>
-*/}
-<TorreBlocos />
 					{/*<h1>Prosseguir?</h1>
 						<button>Yes boss</button>
 						<button>Cancelar</button>*/}
 					<button onClick={voltar}>Voltar</button> 
-{/*				</div>
+				</div>
 			</div>
-*/}		</div>
+			{conteudo}
+		</div>
 	)
 
 }
