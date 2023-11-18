@@ -183,12 +183,12 @@ function Casino() {
 		const jogar = (e) => {
 			setDisplayM("none");
 			switch (escolhido) {
-				case "0": window.location = "./Jogos/TorreBlocos"; break;		
-				case "1": window.location = "./Jogos/Tetris"; break;		
-				case "2": window.location = "./Jogos/SkatePong"; break;		
-				case "3": window.location = "./Jogos/Cobrinha"; break;		
-				case "4": window.location = "./Jogos/Bounce"; break;		
-				case "5": window.location = "./Jogos/F1Race"; break;		
+				case "0": window.location = "./Casino/Jogos/TorreBlocos"; break;		
+				case "1": window.location = "./Casino/Jogos/Tetris"; break;		
+				case "2": window.location = "./Casino/Jogos/SkatePong"; break;		
+				case "3": window.location = "./Casino/Jogos/Cobrinha"; break;		
+				case "4": window.location = "./Casino/Jogos/Bounce"; break;		
+				case "5": window.location = "./Casino/Jogos/F1Race"; break;		
 			}
 		}
 

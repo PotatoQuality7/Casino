@@ -11,6 +11,10 @@ function TorreBlocos() {
 	return (
 		<div>
 			{/*retirar esse useState*/}
+			<div id="saque">
+			<label>Saque</label>
+			
+</div>
 			<Torres />
 		</div>
 	)

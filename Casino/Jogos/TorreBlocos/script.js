@@ -10,6 +10,7 @@ function Torres() {
 	let integrantes = 0;
 	var batata, biscoito, palony, camera;
 	let flash_count = 0, num_flash = 10;
+	let num_blocos = 0;
 	let y, x;
 	let iniciar = true;
 	var intervalo = {
@@ -77,15 +78,20 @@ function Torres() {
 
 	function pedregulhar() {
 		y = pedregulho.y; x = pedregulho.x;
-		if (y == blocos[1].y+blocos[1].height)
+		if (y == blocos[1].y+blocos[1].height) {
 			clearInterval(palony);
+			ctx.clearRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
+			return "";
+		}
 		ctx.clearRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
 		y = ++pedregulho.y;
 		ctx.fillStyle = pedregulho.cor;
 		ctx.fillRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
+		pedregulho.opacity -= 0.2;
 }
 
 	function analisarSobrevivencia(x) {
+		num_blocos++;
 		if (iniciar == true) {
 			alvo.x[0] = x;
 			alvo.x[1] = x+blocos[0].width;
@@ -113,11 +119,13 @@ function Torres() {
 		pedregulho.width = reducao;
 		pedregulho.height = blocos[0].height;
 		pedregulho.cor = cor;
-		//palony = setInterval(pedregulhar,intervalo.atual[1]);
+		palony = setInterval(pedregulhar,intervalo.atual[1]);
 
 		/*ctx.fillStyle = "red";
 		ctx.fillRect(0,0,alvo.x[0]*kkslide,canvas.height);
 		ctx.fillRect(alvo.x[1]*kkslide,0,(board.width-alvo.x[1])*kkslide,canvas.height);*/
+		if (num_blocos >= 3)
+			camerar();
 		return true;
 
 	}
@@ -141,7 +149,7 @@ function Torres() {
 		else {
 		  clearInterval(batata);
 		  clearInterval(biscoito);
-		  clearInterval(camera);
+		  //clearInterval(camera);
 		  cor = "white";
 		  batata = setInterval(flash,120);
 		  //locksetas and run it down to the floor then, you lose
@@ -181,14 +189,35 @@ function Torres() {
 	}
 
 	function camerar() {
-		alvo.y++;
+		if (num_blocos <= 3)
+			return "";
+/*		alvo.y++;
 		for (let i = stack.limite-1; i > 0; i--) {
 			y = blocos[i].y; x = blocos[i].x;
 			ctx.clearRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
 			y = ++blocos[i].y;
 			ctx.fillStyle = blocos[i].cor;
 			ctx.fillRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
+		}*/
+console.log(alvo.y);
+console.log(blocos);
+		for (let i = stack.limite-1; i > 0; i--) {
+			y = blocos[i].y; x = blocos[i].x;
+			ctx.clearRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
+			blocos[i].x = blocos[i-1].x;
+			blocos[i].width = blocos[i-1].width;
+			blocos[i].cor = blocos[i-1].cor;
+
+			x = blocos[i].x;
+			ctx.fillStyle = blocos[i].cor;
+			ctx.fillRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
+			//ctx.fillRect(0,0,50,50);
 		}
+		console.log(blocos);
+		y = blocos[0].y; x = blocos[0].x;
+		ctx.clearRect(0,y*kkslide,canvas.width,blocos[0].height*kkslide);
+		blocos[0].y = blocos[1].y;
+		num_blocos--;
 	}
 
 	useEffect(() => {
@@ -196,7 +225,7 @@ function Torres() {
 	    ctx = canvas.getContext('2d');
 
 	    canvas.width = 1180;
-	    canvas.height = 1000;
+	    canvas.height = 845;
 
 		board = {
 			width: Math.trunc(canvas.width/kkslide),
@@ -217,6 +246,7 @@ function Torres() {
 			width: 0,
 			height: 0,
 			cor: "",
+			opacity: 1,
 		};
 
 		for (let i = 1; i < stack.limite; i++) {
@@ -236,7 +266,7 @@ function Torres() {
 		blocos[0].cor = cor;
 		biscoito = setInterval(deslizar,intervalo.atual[0]);
 		batata = setInterval(gravitar,intervalo.atual[1]);
-		camera = setInterval(camerar,2000);
+		//camera = setInterval(camerar,2000);
 
 		window.addEventListener("keydown", function(e) {
 			switch (e.keyCode) {
