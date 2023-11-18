@@ -16,7 +16,7 @@
 	overflow: hidden;
 }
 
-#titulo {
+#ctitulo {
 	position: absolute;
 	top: 50px;
 	left: 42%;
@@ -28,7 +28,7 @@
 	right: 40px;
 }
 
-.jogos {
+.cjogos {
 	width: 90%;
 	height: 90%;
 	background: black;
@@ -38,7 +38,7 @@
 	z-index: 2;
 }
 
-.bordas {
+.cbordas {
 	background: repeating-linear-gradient(-45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
 	position: absolute;
 	z-index: 1;
@@ -83,7 +83,7 @@
 	z-index: 0;
 }
 
-#detalhes {
+#cdetalhes {
 	position: absolute;
 	width: 320px;
 	height: 600px;
@@ -91,7 +91,7 @@
 	right: 50px;
 }
 
-#descricao {
+#cdescricao {
 	position: relative;
 	width: 100%;	
 	height: 80%;

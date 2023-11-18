@@ -19,40 +19,40 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class MainController {
 
 	@Autowired
-	private JogadorRepository jogadorRepository;
+	private JogoRepository jogoRepository;
 
 	@PostMapping(path="/add") 
-	public String adicionarJogador(@RequestBody Jogador jogador) {
-		jogadorRepository.save(jogador);
+	public String adicionarJogo(@RequestBody Jogo jogo) {
+		jogoRepository.save(jogo);
     	return "Saved\n";
 	}
 
 	@PutMapping(path="/update/{id}") 
-	public String atualizarJogador(@PathVariable Integer id, @RequestBody Jogador jogador) {
-	    jogador.setId(id);
-		jogadorRepository.save(jogador);    
+	public String atualizarJogo(@PathVariable Integer id, @RequestBody Jogo jogo) {
+	    jogo.setId(id);
+		jogoRepository.save(jogo);    
 	    return "Atualizado\n";
 	}
 
 	@GetMapping(path="/findAll")
-		public @ResponseBody Iterable<Jogador> getAllJogadores() {
-		return jogadorRepository.findAll();
+		public @ResponseBody Iterable<Jogo> getAllJogoes() {
+		return jogoRepository.findAll();
 	}
 
 	@GetMapping(path="/findById/{id}")
 		public @ResponseBody Object getById(@PathVariable Integer id) {
-		return jogadorRepository.findById(id);
+		return jogoRepository.findById(id);
 	}
 
 	@DeleteMapping(path="/deleteAll")
 	public @ResponseBody String delete() {
-		jogadorRepository.deleteAll();
+		jogoRepository.deleteAll();
 		return "Tudo apagado\n";
 	}
 
 	@DeleteMapping(path="/deleteById/{id}")
 	public @ResponseBody String deleteById(@PathVariable Integer id) {
-		jogadorRepository.deleteById(id);
+		jogoRepository.deleteById(id);
 		return "Usuario apagado\n";
 	}
   

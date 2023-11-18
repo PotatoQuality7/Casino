@@ -1,0 +1,155 @@
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 98%;
+	height: 98%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
+}
+
+#titulo {
+	position: absolute;
+	bottom: 20px;
+	left: 42%;
+}
+
+#foto {
+	width: 280px;
+	height: 300px;
+	border: solid 6px white;
+	position: absolute;
+	top: 150px;
+	left: 60px;
+}
+
+#detalhes {
+	position: absolute;
+	top: 185px;
+	left: 450px;
+}
+
+#configuracoes {
+	position: absolute;
+	bottom: 120px;
+	left: 70px;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+.campos {
+	width: 600px;
+	height: 30px;
+	font-size: 18px;
+	background: linear-gradient(-90deg,red, yellow);
+}
+
+#animacao {
+	width: 250px;
+	padding: 0px 0px 0px 10px;
+	border: solid 2px white;
+	background: linear-gradient(90deg, purple, purple,red);
+}
+
+#on, #off {
+	position: relative;
+	left: 15px;
+}
+
+#on {
+	background: green;
+}
+
+#off {
+	background: red;
+}
+
+.labels {
+	position: relative;
+	text-align: left;
+}
+
+#lingua {
+	position: absolute;
+	bottom: -20px;
+	left: 680px;
+}
+
+.linguas {
+	height: 48px;
+	position: relative;
+	left: 100px;
+	font-size: 16px;
+	border: solid white 2px;
+	background: linear-gradient(45deg, purple,black);
+	color: white;
+}
+
+#lingua-1 {
+	width: 170px;
+	transform: rotate(-55deg);
+	top: 77px;
+	left: 20px;
+}
+
+#lingua-2 {
+	width: 140px;
+	transform: rotate(-50deg);
+	top: 55px;
+	left: 56px;
+}
+
+#lingua-3 {
+	width: 110px;
+	transform: rotate(-45deg);
+	top: 35px;
+	left: 92px;
+	text-align: right;
+}
+
+#bola {
+	width: 175px;
+	height: 120px;
+	border-radius: 50%;
+	border: solid white 2px;
+	background: linear-gradient(45deg,black, purple);
+	color: white;
+	text-align: center;
+	padding-top: 50px;
+	font-size: 40px;
+	position: relative;
+}
+
+#confirmacao {
+	position: absolute;
+	bottom: 50px;
+	left: 450px;
+	height: 50px;
+}
+
+#salvar {
+	background: green;
+	height: 100%;
+	font-size: 17px;
+	color: white;
+	border: solid 2px black;
+}
+
+#iconfirmacao {
+	height: 80%;
+	color: white;
+	font-size: 17px;
+	background: linear-gradient(45deg,green,green,black);
+	border: solid 2px black;
+}

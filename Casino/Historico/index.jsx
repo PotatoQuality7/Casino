@@ -17,8 +17,9 @@ function Historico() {
 	];
 
 	const voltar = (e) => {
-		setDisplay("");
-		setConteudo(<Casino />);
+		/*setDisplay("");
+		setConteudo(<Casino />);*/
+		window.location = "/Casino";
 	}
 		const [green,setGreen] = useState("none");
 		const [red,setRed] = useState("none");

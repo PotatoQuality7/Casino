@@ -1,6 +1,7 @@
 import "./styles.css";
 import Canvas from "./script.js";
 import { useState, useEffect, React } from "react";
+import JogadorService from '../Backend/services/JogadorService.js';
 
 function Casino() {
 
@@ -10,7 +11,7 @@ function Casino() {
 	const [conteudoM,setConteudoM] = useState("");
 	const [displayM,setDisplayM] = useState("block");
 
-	var atual = 0;
+	var atual = 0, image;
 	var limite = 0;
 	var dir = [];
 	var adjust = [
@@ -95,8 +96,13 @@ function Casino() {
 
 	function Menu() {
 
-		const [nome,setNome] = useState("Algoo");
-		const [senha,setSenha] = useState("Algoo");
+		const [jogo,setJogo] = useState("");
+		const [jogador,setJogador] = useState("");
+		const [nome,setNome] = useState("");
+		const [hax,setHax] = useState(115);
+		const [descricao,setDescricao] = useState("");
+		const [multiplicador,setMultiplicador] = useState("");
+		const [imagem,setImagem] = useState("");
 		const [cor1, setCor1] = useState("yellow");	
 		const [cor2, setCor2] = useState("purple");	
 
@@ -119,26 +125,7 @@ function Casino() {
 		]);
 
 		const [duracao, setDuracao] = useState([0,0]);
-			
-		const upNome = (e) => {
-			setNome(e.target.value);
-		}
-	
-		const upSenha = (e) => {
-			setSenha(e.target.value);
-		}
-
-		function cadastrar() {
-			setDisplay("none");
-		}
-
-		function logar() {
-			setDisplay("none");
-		}
-
-		function coisa() {
-			console.log("Tarde");
-		}		
+					
 
 		const animacaoBoard = (e) => {
 			setCor1(cor1 == "yellow"? "purple" : "yellow");		
@@ -206,6 +193,17 @@ function Casino() {
 		}
 
 		useEffect(() => {
+			JogadorService.getJogadores().then((res) => {
+                res.data.forEach((jgr) => {
+                    if (hax == jgr.id) {
+                        setJogador(jgr);
+                    };
+                });
+            });
+
+		}, []);
+
+		useEffect(() => {
 			biscoito = setInterval(animacaoBoard, 60);
 			return () => clearInterval(biscoito);
 		}, [cor1, cor2]);
@@ -221,12 +219,10 @@ function Casino() {
 		}, [caixinha]);
 
 		function determinarMovimento(i) {
-			let a = movimentoFator[i][0] = (caixinha[i].x-metas[i][0]) * -1;
-			let b = movimentoFator[i][1] = (caixinha[i].y-metas[i][1]) * -1;
-			let diagonal = Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
-			movimentoFator[i][0] /= diagonal;
-			movimentoFator[i][1] /= diagonal;
-			movimentoHops[i][0] = Math.trunc(diagonal);
+			let time = 150;
+			movimentoFator[i][0] = ((caixinha[i].x-metas[i][0]) * -1)/time;
+			movimentoFator[i][1] = ((caixinha[i].y-metas[i][1]) * -1)/time;
+			movimentoHops[i][0] = time;
 		}
 
 		function determinarTamanho() {
@@ -243,11 +239,24 @@ function Casino() {
 		}
 
 		const trig = (e) => {
-			if ((prev == pivo || trigged == true) && prev != null)
+			if ((e.target.value == pivo || trigged == true) && prev != null)
 				return "";
 			prev = pivo;
 			pivo = e.target.value;
 			setEscolhido(pivo);
+			JogadorService.getJogos().then((res) => {
+	            res.data.forEach((jgr) => {
+	                if (jgr.id-1 == pivo) {
+	                    setJogo(jgr);
+	                    setNome(jgr.nome);
+	                    setDescricao(jgr.descricao);
+	                    setMultiplicador(jgr.multiplicador);
+	                    setImagem(jgr.imagem);
+	                    image = require('../Art/Cool Background.png');
+	                };
+	            });
+	        });
+
 			trigged = true; 
 			let temp = [1,2,3,4,5];
 			metas[pivo][0] = docks[0][0]
@@ -314,62 +323,62 @@ function Casino() {
 				<div id="tela">
 						<Canvas />
 						<div>
-							<h1 id="titulo">Casino</h1>
+							<h1 id="ctitulo">Casino</h1>
 							<button id="power" onClick={logout}>POWER</button>
 							<div>
-								<div id="borda-1" className="bordas" ref={el => {
+								<div id="borda-1" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[0].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[0].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[0]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[0]+"px"), 'important');
 						            }}}>
-									<button id="jogo-1" className="jogos" value="0" onClick={trig}>Torre de Blocos</button>
+									<button id="cjogo-1" className="cjogos" value="0" onClick={trig}>Torre de Blocos</button>
 								</div>
-								<div id="borda-2" className="bordas" ref={el => {
+								<div id="borda-2" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[1].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[1].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[1]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[1]+"px"), 'important');
 						            }}}>
-									<button id="jogo-2" className="jogos" value="1" onClick={trig}>Tetris</button>
+									<button id="cjogo-2" className="cjogos" value="1" onClick={trig}>Tetris</button>
 								</div>
-								<div id="borda-3" className="bordas" ref={el => {
+								<div id="borda-3" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[2].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[2].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[2]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[2]+"px"), 'important');
 						            }}}> 
-									<button id="jogo-3" className="jogos" value="2" onClick={trig}>SkatePong</button>
+									<button id="cjogo-3" className="cjogos" value="2" onClick={trig}>SkatePong</button>
 								</div>
-								<div id="borda-4" className="bordas" ref={el => {
+								<div id="borda-4" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[3].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[3].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[3]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[3]+"px"), 'important');
 						            }}}> 
-									<button id="jogo-4" className="jogos" value="3" onClick={trig}>Snake</button>
+									<button id="cjogo-4" className="cjogos" value="3" onClick={trig}>Snake</button>
 								</div>
-								<div id="borda-5" className="bordas" ref={el => {
+								<div id="borda-5" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[4].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[4].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[4]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[4]+"px"), 'important');
 						            }}}>
-									<button id="jogo-5" className="jogos" value="4" onClick={trig}>Bounce</button>
+									<button id="cjogo-5" className="cjogos" value="4" onClick={trig}>Bounce</button>
 								</div>
-								<div id="borda-6" className="bordas" ref={el => {
+								<div id="borda-6" className="cbordas" ref={el => {
 						            if (el) {
 						              el.style.setProperty('top', (caixinha[5].y+"px"), 'important');
 						              el.style.setProperty('left', (caixinha[5].x+"px"), 'important');
 						              el.style.setProperty('width', (tamanho[5]+"px"), 'important');
 						              el.style.setProperty('height', (tamanho[5]+"px"), 'important');
 						            }}}>
-									<button id="jogo-6" className="jogos" value="5" onClick={trig}>F1 Race</button></div>
+									<button id="cjogo-6" className="cjogos" value="5" onClick={trig}>F1 Race</button></div>
 								</div>
 							</div>
 
@@ -381,7 +390,7 @@ function Casino() {
 							              el.style.setProperty('left', (flt[0].x+"px"), 'important');
 							            }
 							     	 }}>Perfil</button>
-								<button id="flt-2" className="flutuantes" value="estatisticas" onClick={buttonClick}
+								<button id="flt-2" className="flutuantes" value="historico" onClick={buttonClick}
 									ref={el => {
 							            if (el) {
 							              el.style.setProperty('top', (flt[1].y+"px"), 'important');
@@ -404,35 +413,17 @@ function Casino() {
 							     	 }}>Documentação</button>						
 							</nav>
 
-							<div style={{"display": escolhido == null? "none": "inline-block"}}>
-								<fieldset id="detalhes">
-									<legend>Titulo do Jogo</legend>
-									<textarea id="descricao">
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
-										Conteudo Conteudo Conteudo
+							<div style={{"display": escolhido == null? "none": "inline-block"}}x>
+								<fieldset id="cdetalhes">
+									<legend>{nome}</legend>
+									<textarea id="cdescricao" value={descricao}>
+										{descricao}
 									</textarea>
 									<form action="" method="POST">
 											<label>Aposta</label>
 											<div style={{"background": "yellow", "width": "150px","height": "40px"}}>
 											<label id="aposta" style={{"display": "inline-block"}}>MZN</label>
-												<input id="apostaField" name="aposta" type="number" placeholder="MAX: 580" required />
+												<input id="apostaField" name="aposta" type="number" placeholder={"MAX: "+jogador.saldo} required />
 											</div>
 										<button onClick={jogar}>Jogar</button>
 										<button>Tutorial</button>

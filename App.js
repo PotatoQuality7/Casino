@@ -6,7 +6,7 @@ import logo from './logo.svg';
 import Login from './Login/index.jsx';
 import Casino from './Casino/index.jsx';
 
-import Perfil from "./Casino/Perfil/index.js";
+import Perfil from "./Casino/Perfil/index.jsx";
 import Estatisticas from "./Casino/Estatisticas/index.js";
 import Historico from "./Casino/Historico/index.jsx";
 import Transferencias from "./Casino/Transferencias/index.jsx";

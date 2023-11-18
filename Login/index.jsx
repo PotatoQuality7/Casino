@@ -1,7 +1,8 @@
 import './styles.css';
 import { useState } from 'react';
+import { createGlobalState } from 'react-hooks-global-state';
 import Casino from '../Casino/index.jsx';
-import JogadorService from '../Backend/services/JogadorService.js'
+import JogadorService from '../Backend/services/JogadorService.js';
 
 function Login() {
 	
@@ -12,6 +13,7 @@ function Login() {
 	const [nome, setNome] = useState("");
 	const [email, setEmail] = useState("");
 	const [date, setDate] = useState("");
+	const [imagem, setImagem] = useState("../Art/Cool Background");
 	const [senha, setSenha] = useState("");
 	const [csenha, setCSenha] = useState("");
 	const [logado, setLogado] = useState(2);
@@ -182,7 +184,7 @@ function Login() {
 		}
 		
 		function cadastrar() {
-			let jogador = {nome: nome, email: email, senha: senha, saldo: 0, imagem: "", lingua: "pt", animacao: true, som: 100, valores: [[0,0],[0,0],[0,0]]};
+			let jogador = {nome: nome, email: email, senha: senha, saldo: 0, imagem: imagem, lingua: "pt", animacao: true, som: 100, valores: [[0,0],[0,0],[0,0]]};
 				console.log("jogador => "+JSON.stringify(jogador));
 				JogadorService.adicionarJogador(jogador).then(res => {
 					alert("Ye boi");
