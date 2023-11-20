@@ -1,0 +1,90 @@
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 98%;
+	height: 98%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
+}
+
+#etitulo {
+	position: absolute;
+	top: 0px;
+	left: 42%;
+}
+
+#econtainer {
+	width: 55vw;
+	height: 74vh;
+	background: rgba(0,0,0,0.1);
+	position: absolute;
+	top: 150px;
+	left: 56px;
+	border-left: solid 4px white;
+}
+
+#break-even {
+	width: 100%;
+	height: 3px;
+	background: white;
+	position: absolute;
+	top: 50%;
+	left: 0px;
+}
+
+#chave {
+	width: 180px;
+	height: 185px;
+	border: solid white 2px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	font-size: 15px;
+	line-height: 0px;
+	text-align: left;
+}
+
+.ecor {
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	right: 10px;
+	margin-top: 4px;
+}
+
+#ecor-1 {
+	background: purple;
+}
+
+#ecor-2 {
+	background: blue;
+}
+
+#ecor-3 {
+	background: green;
+}
+
+#ecor-4 {
+	background: yellow;
+}
+
+#ecor-5 {
+	background: orange;
+}
+
+#ecor-6 {
+	background: red;
+}
+
+#ecor-7 {
+	background: white;
+}

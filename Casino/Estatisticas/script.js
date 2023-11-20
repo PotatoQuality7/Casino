@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 function Canvas() {
 	const canvasRef = useRef(null);
 
+
 	let width, height, ctx;
 	let cores = [];
 	//const quads = 30;

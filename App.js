@@ -7,7 +7,7 @@ import Login from './Login/index.jsx';
 import Casino from './Casino/index.jsx';
 
 import Perfil from "./Casino/Perfil/index.jsx";
-import Estatisticas from "./Casino/Estatisticas/index.js";
+import Estatisticas from "./Casino/Estatisticas/index.jsx";
 import Historico from "./Casino/Historico/index.jsx";
 import Transferencias from "./Casino/Transferencias/index.jsx";
 import Documentacao from "./Casino/Documentacao/index.js";

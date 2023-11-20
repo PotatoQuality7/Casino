@@ -5,11 +5,12 @@ import JogadorService from '../Backend/services/JogadorService.js';
 
 function Casino() {
 
-	const [conteudo,setConteudo] = useState("");
-	const [display,setDisplay] = useState("block");
+	const [conteudo, setConteudo] = useState("");
+	const [display, setDisplay] = useState("block");
 
-	const [conteudoM,setConteudoM] = useState("");
-	const [displayM,setDisplayM] = useState("block");
+	const [conteudoM, setConteudoM] = useState("");
+	const [displayM, setDisplayM] = useState("block");
+	const [conta, setConta] = useState("root");
 
 	var atual = 0, image;
 	var limite = 0;
@@ -390,13 +391,13 @@ function Casino() {
 							              el.style.setProperty('left', (flt[0].x+"px"), 'important');
 							            }
 							     	 }}>Perfil</button>
-								<button id="flt-2" className="flutuantes" value="historico" onClick={buttonClick}
+								<button id="flt-2" className="flutuantes" value={conta == "root"? "estatisticas" : "historico"} onClick={buttonClick}
 									ref={el => {
 							            if (el) {
 							              el.style.setProperty('top', (flt[1].y+"px"), 'important');
 							              el.style.setProperty('left', (flt[1].x+"px"), 'important');
 							            }
-								     	 }}>Histórico</button>
+								     	 }}>{conta == "root"? "Estatísticas" : "Histórico"}</button>
 								<button id="flt-3" className="flutuantes" value="transferencias" onClick={buttonClick}
 									ref={el => {
 							            if (el) {
