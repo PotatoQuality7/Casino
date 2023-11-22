@@ -28,13 +28,13 @@
 	right: 40px;
 }
 
-#container {
+#hcontainer {
+	position: absolute;
 	width: 50vw;
 	height: 70vh;
 	border-left: white 5px solid;
 	border-top: white 5px solid;
 	border-right: white 5px solid;
-	position: relative;
 	top: 20%;
 	left: 9%;
 	transform: rotate(180deg);

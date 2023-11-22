@@ -38,21 +38,21 @@ function Historico() {
         ]);
 
 		const [lucros, setLucros] = useState([
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
         ]);
 
 		const [perdas, setPerdas] = useState([
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
-            {real: Math.trunc(Math.random()*10000), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
+            {real: Math.trunc(Math.random()*100), demo: 0},
         ]);
 
 		const animacaoBoard = (e) => {
@@ -148,9 +148,9 @@ function Historico() {
 					  let pattern = "repeating-linear-gradient(-45deg, "+cor1+" 5px, "+cor1+", "+cor2+" 10px, "+cor2+", "+cor1+" 15px)";
 		              el.style.setProperty("background", pattern, 'important'); }}}>
 				<div id="tela">
-				{/*	<Canvas /> */}
+					<Canvas />
 					<h1 id="titulo">HISTÓRICO</h1>
-					<div id="container">
+					<div id="hcontainer">
 						<section>
 							<div className="valor" id="valor-1" style={{bottom: (650-total[0])-26+"px"}}>
 								<label className="lucro">${lucros[0].real}</label> |
@@ -243,6 +243,10 @@ function Historico() {
 				<title>Tela do Historico</title>
 				<Menu />
 			</div>
+			<div>
+                <div id="cortina-l"></div>
+                <div id="cortina-r"></div>
+            </div>
 			{conteudo}
 		</div>
 	)

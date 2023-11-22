@@ -455,7 +455,10 @@ function Casino() {
 					<Menu />
 				</div>
 				{conteudoM}
-				
+				<div>
+                    <div id="cortina-l"></div>
+                    <div id="cortina-r"></div>
+                </div>				
 				<div style={{"display": displayM == "block"? "none" : "block"}}>
 					{/*<h1>Prosseguir?</h1>
 						<button>Yes boss</button>

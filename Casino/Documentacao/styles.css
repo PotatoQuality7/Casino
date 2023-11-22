@@ -1,0 +1,69 @@
+#tela-borda {
+	width: 1200px;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 360px;
+}
+
+#tela {
+	width: 98%;
+	height: 98%;
+	background: rgb(40,44,52);
+	position: relative;
+	top: 1%;
+	left: 1%;
+	overflow: hidden;
+}
+
+#full-black {
+	position: absolute;
+	top: 0px;
+	left: 180px;
+	width: 804px;
+	opacity: 1;
+}
+
+#principal {
+	position: absolute;
+}
+
+#estrada {
+	position: absolute;
+	background: none;
+	border: 0px solid white;
+	width: 800px;
+	height: 20000px;
+	left: 180px;
+	font-size: 50px;
+	color: white;
+	text-align: center;
+	overflow: hidden;
+}
+
+#velocidades {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+.faixas {
+	position: absolute;
+	width: 30px;
+	height: 100px;	
+}
+
+.faixa-l {
+	left: 425px;
+}
+
+.faixa-r {
+	right: 425px;
+}
+
+#carro {
+	position: absolute;
+	width: 100px;
+	height: 170px;
+}
+

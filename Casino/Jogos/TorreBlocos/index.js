@@ -55,6 +55,10 @@ function TorreBlocos() {
 		<div>
 			<title>Tela do TorreBlocos</title>
 			<Menu />
+			<div>
+                <div id="cortina-l"></div>
+                <div id="cortina-r"></div>
+            </div>
 		</div>
 	)
 

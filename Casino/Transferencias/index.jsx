@@ -16,7 +16,7 @@ function Transferencias() {
 	let valorMax, valor, codigo, seguranca, validade, pin;	
 
 	var intervalo = {
-		caixa: 10, plataforma: 15
+		caixa: 8, plataforma: 12
 	};
 
 	const voltar = (e) => {
@@ -50,11 +50,11 @@ function Transferencias() {
         );
 
 		const [poste, setPoste] = useState(
-            {x: 690, y: 790, height: 5}//380
+            {x: 690, y: 790, height: 10}//380
         );
 
 		const [base, setBase] = useState(
-            {x: 550, y: 742}//315
+            {x: 550, y: 719}//315
         );
 
 		const animacaoBoard = (e) => {
@@ -85,7 +85,7 @@ function Transferencias() {
 		const moverPlataforma = (e) => {
 			if (!plata_permissao || clog)
 				return "";
-			if (base.y == 743) {
+			if (base.y == 720) {
 				setTrabalhador({x: trabalhador.x, y: caixa.y});
 				plata_permissao = false;
 				bata_permissao = true;
@@ -312,6 +312,10 @@ const [conteudo, setConteudo] = useState(
 		<div>
 			<title>Tela das Tranferencias</title>
 			<Menu />
+			<div>
+                <div id="cortina-l"></div>
+                <div id="cortina-r"></div>
+            </div>
 		</div>
 	)
 

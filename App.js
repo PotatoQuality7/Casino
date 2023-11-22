@@ -10,7 +10,7 @@ import Perfil from "./Casino/Perfil/index.jsx";
 import Estatisticas from "./Casino/Estatisticas/index.jsx";
 import Historico from "./Casino/Historico/index.jsx";
 import Transferencias from "./Casino/Transferencias/index.jsx";
-import Documentacao from "./Casino/Documentacao/index.js";
+import Documentacao from "./Casino/Documentacao/index.jsx";
 
 import TorreBlocos from "./Casino/Jogos/TorreBlocos/index.js";
 import Bounce from "./Casino/Jogos/Bounce/index.js";

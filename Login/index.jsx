@@ -6,7 +6,7 @@ import JogadorService from '../Backend/services/JogadorService.js';
 
 function Login() {
 	
-	var time = 3000;
+	var time = 5500;
 	const [display, setDisplay] = useState("block");
 	const [conteudo, setConteudo] = useState("");
 	const [jogador, setJogador] = useState();

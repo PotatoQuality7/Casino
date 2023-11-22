@@ -36,7 +36,7 @@ function Perfil() {
 	useEffect(() => {
 		JogadorService.getJogadores().then((res) => {
             res.data.forEach((jgr) => {
-                if (jgr.id == 115) {
+                //if (jgr.id == 115) {
 					setJogador(jgr);
 					setId(jgr.id);
 					setNome(jgr.nome);
@@ -48,7 +48,7 @@ function Perfil() {
 					setValores(jgr.valores);
 					setSom(jgr.som);
 					image = require('../../Art/Cool Background.png');			
-                };
+                //};
             });
         });
     }, []);
@@ -177,6 +177,10 @@ function Perfil() {
 		<div>
 			<title>Tela do Perfil</title>
 			<Menu />
+			<div>
+                <div id="cortina-l"></div>
+                <div id="cortina-r"></div>
+            </div>
 		</div>
 	)
 

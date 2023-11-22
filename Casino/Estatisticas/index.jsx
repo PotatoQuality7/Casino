@@ -131,6 +131,10 @@ function Estatisticas() {
 		<div>
 			<title>Tela do Estatisticas</title>
 			<Menu />
+			<div>
+                <div id="cortina-l"></div>
+                <div id="cortina-r"></div>
+            </div>
 		</div>
 	)
 
