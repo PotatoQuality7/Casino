@@ -31,6 +31,7 @@ function Historico() {
 		const [cor1, setCor1] = useState("yellow");	
 		const [cor2, setCor2] = useState("purple");	
 		const [permissao, setPermissao] = useState(false);
+	let calibrou = false;
 
 		const [total, setTotal] = useState([
             0,0,0,0,0,0
@@ -60,7 +61,7 @@ function Historico() {
 		}
 
 		function calibrar() {
-			if (permissao == false)
+			if (permissao == false && calibrou == false)
 				return "";
 			setTotal([
 				total[0]+steps[0],
@@ -73,6 +74,7 @@ function Historico() {
 			fill_count++;
 			if (fill_count == 500) {
 				setPermissao(false);
+				calibrou = true;
 				clearInterval(palony);
 			}
 		}

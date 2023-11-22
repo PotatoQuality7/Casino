@@ -7,7 +7,7 @@ function Torres() {
 	let canvas;
 	let ctx, cor;
 	let kkslide = 20;
-	let integrantes = 0;
+	let integrantes = 0, saque = 0;
 	var batata, biscoito, palony, camera;
 	let flash_count = 0, num_flash = 10;
 	let num_blocos = 0;
@@ -24,7 +24,7 @@ function Torres() {
 		limite: 10,
 	};
 
-	const incremento = 0.01; //Pegar API do SpringBoot para obter a constante do incremento
+	const multiplicador = 0.16; //Pegar API do SpringBoot para obter a constante do multiplicador
 
 	let aposta = {
 		valor: 50,
@@ -34,8 +34,21 @@ function Torres() {
 	let board = [];
 
 	function gameOver() {
-		//alert("boi");
-		//show results of game here
+		alert("Sua aposta: $"+aposta.valor+"\nO resultado: $"+aposta.refresco+"\nLucro: $"+(aposta.refresco-aposta.valor));
+		window.location = "/Casino";
+	}
+
+	function desenharSaque() {
+		let wiw = 120, hiw = 70;
+		ctx.fillStyle = aposta.refresco-aposta.valor >= 0? "green" : "red";
+		ctx.fillRect(canvas.width-wiw,0,wiw,hiw);
+		let pos_x = canvas.width-wiw;
+		ctx.fillStyle = "white";
+		ctx.font = "20px Arial";
+//		saque += multiplicador*aposta;
+		ctx.fillText("Lucro:", pos_x+10, 20);
+		ctx.fillText("$"+(aposta.refresco-aposta.valor), pos_x+10, 50);
+		
 	}
 
 	function flash() {
@@ -56,7 +69,7 @@ function Torres() {
 	}
 
 	function aumentarRefresco() {
-		aposta.refresco += aposta.valor*incremento;
+		aposta.refresco += aposta.valor*multiplicador;
 	}
 
 	function shiftar() {
@@ -66,6 +79,19 @@ function Torres() {
 			blocos[i].width = blocos[i-1].width; 
 			blocos[i].height = blocos[i-1].height; 
 			blocos[i].cor = blocos[i-1].cor;
+		}
+		if (num_blocos >= 3) {
+			ctx.clearRect(pedregulho.x*kkslide,pedregulho.y*kkslide,pedregulho.width*kkslide,blocos[0].height*kkslide);
+			pedregulho.y += blocos[0].height;
+			for (let i = stack.limite-1; i >= 0; i--) {
+				y = blocos[i].y; x = blocos[i].x;
+				ctx.clearRect(0,y*kkslide,canvas.width,blocos[i].height*kkslide);
+				blocos[i].y += blocos[i].height;
+				y = blocos[i].y;
+				ctx.fillStyle = blocos[i].cor;
+				ctx.fillRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
+			}
+			num_blocos--;
 		}
 		alvo.y = blocos[0].y;
 		blocos[0].y = 0;
@@ -80,7 +106,8 @@ function Torres() {
 		y = pedregulho.y; x = pedregulho.x;
 		if (y == blocos[1].y+blocos[1].height) {
 			clearInterval(palony);
-			ctx.clearRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
+			ctx.fillStyle = pedregulho.cor;
+			ctx.fillRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
 			return "";
 		}
 		ctx.clearRect(x*kkslide,y*kkslide,pedregulho.width*kkslide,pedregulho.height*kkslide);
@@ -124,8 +151,9 @@ function Torres() {
 		/*ctx.fillStyle = "red";
 		ctx.fillRect(0,0,alvo.x[0]*kkslide,canvas.height);
 		ctx.fillRect(alvo.x[1]*kkslide,0,(board.width-alvo.x[1])*kkslide,canvas.height);*/
-		if (num_blocos >= 3)
-			camerar();
+		desenharSaque();
+		//if (num_blocos >= 3)
+			//camerar();
 		return true;
 
 	}
@@ -201,23 +229,30 @@ function Torres() {
 		}*/
 console.log(alvo.y);
 console.log(blocos);
-		for (let i = stack.limite-1; i > 0; i--) {
+		for (let i = 0; i < stack.limite-1; i++) {
 			y = blocos[i].y; x = blocos[i].x;
-			ctx.clearRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
-			blocos[i].x = blocos[i-1].x;
-			blocos[i].width = blocos[i-1].width;
-			blocos[i].cor = blocos[i-1].cor;
+			if (i == 0)
+				ctx.clearRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
+			blocos[i].y = blocos[i+1].y;
+			blocos[i].x = blocos[i+1].x;
+			blocos[i].width = blocos[i+1].width;
+			blocos[i].height = blocos[i+1].height;
+			blocos[i].cor = blocos[i+1].cor;
 
 			x = blocos[i].x;
+			y = blocos[i].y;
+			ctx.clearRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
 			ctx.fillStyle = blocos[i].cor;
 			ctx.fillRect(x*kkslide,y*kkslide,blocos[i].width*kkslide,blocos[i].height*kkslide);
 			//ctx.fillRect(0,0,50,50);
 		}
-		console.log(blocos);
-		y = blocos[0].y; x = blocos[0].x;
-		ctx.clearRect(0,y*kkslide,canvas.width,blocos[0].height*kkslide);
-		blocos[0].y = blocos[1].y;
+x = blocos[1].x;
+			y = blocos[1].y;
+ctx.fillStyle = "black	";
+			ctx.clearRect(x*kkslide,y*kkslide,blocos[1].width*kkslide,blocos[1].height*kkslide);
 		num_blocos--;
+console.log("avaliar");
+console.log(blocos);
 	}
 
 	useEffect(() => {
@@ -225,7 +260,7 @@ console.log(blocos);
 	    ctx = canvas.getContext('2d');
 
 	    canvas.width = 1180;
-	    canvas.height = 845;
+	    canvas.height = 975;
 
 		board = {
 			width: Math.trunc(canvas.width/kkslide),
@@ -255,18 +290,20 @@ console.log(blocos);
 				x: 0,
 				width: 0,
 				cor: "",
+				height: 8,
 			});
 		}
 		alvo = {
 		 	y: board.height,
 			x: [0,board.width],
 		};
-				
+		
+		desenharSaque();		
 		cor = "rgb("+Math.random()*256+","+Math.random()*256+","+Math.random()*256+")";		
 		blocos[0].cor = cor;
 		biscoito = setInterval(deslizar,intervalo.atual[0]);
 		batata = setInterval(gravitar,intervalo.atual[1]);
-		//camera = setInterval(camerar,2000);
+		//camera = setInterval(//camerar,2000);
 
 		window.addEventListener("keydown", function(e) {
 			switch (e.keyCode) {

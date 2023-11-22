@@ -1,12 +1,12 @@
 import './styles.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { createGlobalState } from 'react-hooks-global-state';
 import Casino from '../Casino/index.jsx';
 import JogadorService from '../Backend/services/JogadorService.js';
 
 function Login() {
 	
-	var time = 3000;
+	var time = 2000;
 	const [display, setDisplay] = useState("block");
 	const [conteudo, setConteudo] = useState("");
 	const [jogador, setJogador] = useState();
@@ -17,17 +17,6 @@ function Login() {
 	const [senha, setSenha] = useState("");
 	const [csenha, setCSenha] = useState("");
 	const [logado, setLogado] = useState(2);
-
-	var flashar, zoom, zooom, toggle = false;
-	
-	const imagens = [
-	    require("../Art/Tela Inicio/Tela Inicio.png"),
-	    require("../Art/Tela Inicio/Insira moeda.png"),
-	    require("../Art/Tela Inicio/Moeda rejeitada.png"),
-	    require("../Art/Tela Inicio/Welcome.png"),
-	    require("../Art/Tela Inicio/Tela 1.png"),
-	    require("../Art/Tela Inicio/Tela 2.png"),
-	];
 
 	const upNome = (e) => {
 		setNome(e.target.value);
@@ -65,84 +54,22 @@ function Login() {
 
 		const [displayL, setDisplayL] = useState("block");
 		const [conteudoL, setConteudoL] = useState("");
-		const [imagem, setImagem] = useState(<img id="insira-mo" src={imagens[1]} />);
-		const [zoomer, setZoomer] = useState(
-            {x: 0, y: 0, width: 1900, height: 1000},
-		);
-	
-		const [alerta, setAlerta] = useState(
-            {x: 850, y: 410, width: 120, height: 80},
-		);
-
-		function zoomar() {
-			if (logado != "true")
-				return "";
-			setZoomer(
-				{x: zoomer.x-1.9, y: zoomer.y-1.4, width: zoomer.width+4.7, height: zoomer.height+3.8},
-			);
-			setAlerta(
-				{x: alerta.x+0.05, y: alerta.y+0, width: alerta.width+0.6, height: alerta.height+0.14},
-			);
-		}
-
-		useEffect(() => {
-            zoom = setInterval(zoomar, 6);
-            return () => clearInterval(zoom);
-        }, [zoomer]);
 
 		setTimeout(() => {
 			setDisplayL("none");
-			if (logado != "true")
+			if (logado != true)
 				setConteudoL(<Maquininha />);
 			 else {
-				if (logado == "true") {
-					setTimeout(() => {
-						entrar();
-					},5000);
-				}
+				entrar();
 			 }
 		}, time)
-
-		useEffect(() => {
-            flashar = setInterval(flash, 500);
-            return () => clearInterval(flashar);
-        }, [toggle]);
-
-
-		function flash() {
-			toggle = !toggle;
-			if (toggle) {
-				if (logado == "true") {
-					setImagem(<img id="insira-mo" src={imagens[3]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (alerta.y+"px"), 'important');
-	                  el.style.setProperty('left', (alerta.x+"px"), 'important');
-	                  el.style.setProperty('width', (alerta.width+"px"), 'important');
-	                  el.style.setProperty('height', (alerta.height+"px"), 'important');
-                	}}} />);
-
-				}
-				 else
-				   if (logado == "false")
-					setImagem(<img id="insira-mo" src={imagens[2]} />);
-				 else
-				  setImagem(<img id="insira-mo" src={imagens[1]} />);
-			}
-			else
-			  setImagem("");
-		}
 
 		return (
 			<div>
 				<div style={{"display": displayL }}>
-					<img id="arcade-maq" src={imagens[0]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (zoomer.y+"px"), 'important');
-	                  el.style.setProperty('left', (zoomer.x+"px"), 'important');
-	                  el.style.setProperty('width', (zoomer.width+"px"), 'important');
-	                  el.style.setProperty('height', (zoomer.height+"px"), 'important');
-                	}}} />
-					{imagem}
+				<h1>Arcade e Maquininha Laser</h1>
+				<h2 style={{"display": logado == true? "block" : "none"}}>Autenticado com sucesso</h2>
+				<h2 style={{"display": logado == false? "block" : "none"}}>Falha na autenticacao</h2>
 				</div>
 				{conteudoL}
 			</div>
@@ -155,28 +82,6 @@ function Login() {
 		const [displayL, setDisplayL] = useState("block");
 		const [conteudoL, setConteudoL] = useState("");
 
-		const [zoomer, setZoomer] = useState(
-            {x: 0, y: 0, width: 1900, height: 1000},
-		);
-
-		const [alerta, setAlerta] = useState(
-            {x: 840, y: 385, width: 150, height: 80},
-		);
-		
-		function zoomar() {
-			setZoomer(
-				{x: zoomer.x-2.37, y: zoomer.y-1, width: zoomer.width+2.9, height: zoomer.height+2},
-			);
-			setAlerta(
-				{x: alerta.x-1.3, y: alerta.y-0.23, width: alerta.width+0.4, height: alerta.height+0.08},
-			);
-		}
-
-		useEffect(() => {
-            zoom = setInterval(zoomar, 6);
-            return () => clearInterval(zoom);
-        }, [zoomer]);
-
 		setTimeout(() => {
 			setDisplayL("none");
 			setConteudoL(<TelaLogin />);
@@ -184,20 +89,7 @@ function Login() {
 		
 		return (
 			<div>
-				<img style={{"display": displayL}} id="zoomer" src={imagens[0]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (zoomer.y+"px"), 'important');
-	                  el.style.setProperty('left', (zoomer.x+"px"), 'important');
-	                  el.style.setProperty('width', (zoomer.width+"px"), 'important');
-	                  el.style.setProperty('height', (zoomer.height+"px"), 'important');
-                }}} />
-                <img style={{"display": displayL}} id="zoomer" src={imagens[logado == 2? 1 : 2]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (alerta.y+"px"), 'important');
-	                  el.style.setProperty('left', (alerta.x+"px"), 'important');
-	                  el.style.setProperty('width', (alerta.width+"px"), 'important');
-	                  el.style.setProperty('height', (alerta.height+"px"), 'important');
-                }}} />
+				<h1 style={{"display": displayL}}>Maquininha Laser</h1>
 				{conteudoL}
 			</div>
 		)
@@ -226,12 +118,12 @@ function Login() {
 		function logar() {
 			JogadorService.getJogadores().then((res) => {
 				console.log(res.data);
-				setLogado("false");   
+				setLogado(false);   
 	         	res.data.forEach((jgr) => {
 	                if (nome == jgr.nome && senha == jgr.senha) {
-						setLogado("true");
+						setLogado(true);
 						setJogador(jgr);
-				};
+					};
 	            });
         	});
 /*			setDisplayL("none");
@@ -332,7 +224,7 @@ function Login() {
 		setTimeout(() => {
 			setDisplayL("none");
 			setConteudoL(<ArcadeMaquininha />);
-			setLogado("true");
+			setLogado(true);
 		}, time)
 
 		return (

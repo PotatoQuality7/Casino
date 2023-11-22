@@ -20,6 +20,7 @@ function Casino() {
 		[0,0],
 		[0,0],
 		[0,0],
+		[0,0],
 	];
 
 	const docks = [
@@ -114,6 +115,7 @@ function Casino() {
 			{x: 520, y: -30},
 			{x: 520, y: 975},
 			{x: 1176, y: 500},
+			{x: 1176, y: 500},
 		]);
 
 		const [caixinha, setCaixinha] = useState([
@@ -136,7 +138,7 @@ function Casino() {
 		function gerarDirecoes() {
 			dir = [];
 			let x, y;
-			for (let i = 0; i <= 3; i++) {
+			for (let i = 0; i <= 4; i++) {
 				x = (Math.trunc(Math.random()*3)-1);
 				y = (Math.trunc(Math.random()*3)-1);
 				if (x == 0 && y == 0)
@@ -153,7 +155,7 @@ function Casino() {
 			if (atual == limite) {
 				gerarDirecoes();
 			}
-			for (let i = 0; i <= 3; i++) {
+			for (let i = 0; i <= 4; i++) {
 				adjust[i][0] = 0;
 				adjust[i][1] = 0;
 				switch (flt[i].x) {
@@ -171,6 +173,7 @@ function Casino() {
 				{x: (flt[1].x+dir[1][0]+adjust[1][0]), y: (flt[1].y+dir[1][1]+adjust[1][1])},
 				{x: (flt[2].x+dir[2][0]+adjust[2][0]), y: (flt[2].y+dir[2][1]+adjust[2][1])},
 				{x: (flt[3].x+dir[3][0]+adjust[3][0]), y: (flt[3].y+dir[3][1]+adjust[3][1])},
+				{x: (flt[4].x+dir[4][0]+adjust[4][0]), y: (flt[4].y+dir[4][1]+adjust[4][1])},
 			]);
 			atual++;
 			//setDuracao([duracao[0],++duracao[1]]);
@@ -391,13 +394,13 @@ function Casino() {
 							              el.style.setProperty('left', (flt[0].x+"px"), 'important');
 							            }
 							     	 }}>Perfil</button>
-								<button id="flt-2" className="flutuantes" value={conta == "root"? "estatisticas" : "historico"} onClick={buttonClick}
+								<button id="flt-2" className="flutuantes" value={"historico"} onClick={buttonClick}
 									ref={el => {
 							            if (el) {
 							              el.style.setProperty('top', (flt[1].y+"px"), 'important');
 							              el.style.setProperty('left', (flt[1].x+"px"), 'important');
 							            }
-								     	 }}>{conta == "root"? "Estatísticas" : "Histórico"}</button>
+								     	 }}>{"Histórico"}</button>
 								<button id="flt-3" className="flutuantes" value="transferencias" onClick={buttonClick}
 									ref={el => {
 							            if (el) {
@@ -412,6 +415,13 @@ function Casino() {
 							              el.style.setProperty('left', (flt[3].x+"px"), 'important');
 							            }
 							     	 }}>Documentação</button>						
+								<button id="flt-5" className="flutuantes" value="estatisticas" onClick={buttonClick}
+									ref={el => {
+							            if (el) {
+							              el.style.setProperty('top', (flt[4].y+"px"), 'important');
+							              el.style.setProperty('left', (flt[4].x+"px"), 'important');
+							            }
+							    }}>Estatisticas</button>						
 							</nav>
 
 							<div style={{"display": escolhido == null? "none": "inline-block"}}x>
@@ -445,7 +455,7 @@ function Casino() {
 					<Menu />
 				</div>
 				{conteudoM}
-
+				
 				<div style={{"display": displayM == "block"? "none" : "block"}}>
 					{/*<h1>Prosseguir?</h1>
 						<button>Yes boss</button>

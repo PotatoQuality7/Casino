@@ -36,11 +36,11 @@ function App() {
                     <Route path = "/Casino/Documentacao" element={<Documentacao />} />
                     <Route path = "/Casino/Jogos/TorreBlocos" element={<TorreBlocos />} />
 				</Routes>
-				<div>
+{/*				<div>
                     <div id="cortina-l"></div>
                     <div id="cortina-r"></div>
                 </div>
-     		 </header>
+   */}  		 </header>
 		</Router>
     </div>
   );

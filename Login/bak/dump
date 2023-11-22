@@ -6,7 +6,7 @@ import JogadorService from '../Backend/services/JogadorService.js';
 
 function Login() {
 	
-	var time = 3000;
+	var time = 6000;
 	const [display, setDisplay] = useState("block");
 	const [conteudo, setConteudo] = useState("");
 	const [jogador, setJogador] = useState();
@@ -18,7 +18,7 @@ function Login() {
 	const [csenha, setCSenha] = useState("");
 	const [logado, setLogado] = useState(2);
 
-	var flashar, zoom, zooom, toggle = false;
+	var flashar, zoom, toggle = false;
 	
 	const imagens = [
 	    require("../Art/Tela Inicio/Tela Inicio.png"),
@@ -69,37 +69,19 @@ function Login() {
 		const [zoomer, setZoomer] = useState(
             {x: 0, y: 0, width: 1900, height: 1000},
 		);
-	
-		const [alerta, setAlerta] = useState(
-            {x: 850, y: 410, width: 120, height: 80},
-		);
 
 		function zoomar() {
-			if (logado != "true")
-				return "";
 			setZoomer(
-				{x: zoomer.x-1.9, y: zoomer.y-1.4, width: zoomer.width+4.7, height: zoomer.height+3.8},
-			);
-			setAlerta(
-				{x: alerta.x+0.05, y: alerta.y+0, width: alerta.width+0.6, height: alerta.height+0.14},
+				{x: zoomer.x, y: zoomer.y, width: zoomer.width+3, height: zoomer.height+3},
 			);
 		}
 
-		useEffect(() => {
-            zoom = setInterval(zoomar, 6);
-            return () => clearInterval(zoom);
-        }, [zoomer]);
-
 		setTimeout(() => {
 			setDisplayL("none");
-			if (logado != "true")
+			if (logado != true)
 				setConteudoL(<Maquininha />);
 			 else {
-				if (logado == "true") {
-					setTimeout(() => {
-						entrar();
-					},5000);
-				}
+					entrar();
 			 }
 		}, time)
 
@@ -111,23 +93,8 @@ function Login() {
 
 		function flash() {
 			toggle = !toggle;
-			if (toggle) {
-				if (logado == "true") {
-					setImagem(<img id="insira-mo" src={imagens[3]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (alerta.y+"px"), 'important');
-	                  el.style.setProperty('left', (alerta.x+"px"), 'important');
-	                  el.style.setProperty('width', (alerta.width+"px"), 'important');
-	                  el.style.setProperty('height', (alerta.height+"px"), 'important');
-                	}}} />);
-
-				}
-				 else
-				   if (logado == "false")
-					setImagem(<img id="insira-mo" src={imagens[2]} />);
-				 else
-				  setImagem(<img id="insira-mo" src={imagens[1]} />);
-			}
+			if (toggle)
+				setImagem(<img id="insira-mo" src={imagens[1]} />);
 			else
 			  setImagem("");
 		}
@@ -141,7 +108,7 @@ function Login() {
 	                  el.style.setProperty('left', (zoomer.x+"px"), 'important');
 	                  el.style.setProperty('width', (zoomer.width+"px"), 'important');
 	                  el.style.setProperty('height', (zoomer.height+"px"), 'important');
-                	}}} />
+                }}} />;
 					{imagem}
 				</div>
 				{conteudoL}
@@ -159,16 +126,9 @@ function Login() {
             {x: 0, y: 0, width: 1900, height: 1000},
 		);
 
-		const [alerta, setAlerta] = useState(
-            {x: 840, y: 385, width: 150, height: 80},
-		);
-		
 		function zoomar() {
 			setZoomer(
 				{x: zoomer.x-2.37, y: zoomer.y-1, width: zoomer.width+2.9, height: zoomer.height+2},
-			);
-			setAlerta(
-				{x: alerta.x-1.3, y: alerta.y-0.23, width: alerta.width+0.4, height: alerta.height+0.08},
 			);
 		}
 
@@ -190,14 +150,7 @@ function Login() {
 	                  el.style.setProperty('left', (zoomer.x+"px"), 'important');
 	                  el.style.setProperty('width', (zoomer.width+"px"), 'important');
 	                  el.style.setProperty('height', (zoomer.height+"px"), 'important');
-                }}} />
-                <img style={{"display": displayL}} id="zoomer" src={imagens[logado == 2? 1 : 2]} ref={el => {
-	                if (el) {
-	                  el.style.setProperty('top', (alerta.y+"px"), 'important');
-	                  el.style.setProperty('left', (alerta.x+"px"), 'important');
-	                  el.style.setProperty('width', (alerta.width+"px"), 'important');
-	                  el.style.setProperty('height', (alerta.height+"px"), 'important');
-                }}} />
+                }}} />);				
 				{conteudoL}
 			</div>
 		)
@@ -226,16 +179,16 @@ function Login() {
 		function logar() {
 			JogadorService.getJogadores().then((res) => {
 				console.log(res.data);
-				setLogado("false");   
+				setLogado(false);   
 	         	res.data.forEach((jgr) => {
 	                if (nome == jgr.nome && senha == jgr.senha) {
-						setLogado("true");
+						setLogado(true);
 						setJogador(jgr);
 				};
 	            });
         	});
-/*			setDisplayL("none");
-			setConteudoL(<Tokenizador />);*/
+			setDisplayL("none");
+			setConteudoL(<Tokenizador />);
 		}
 
 		return (
@@ -332,7 +285,7 @@ function Login() {
 		setTimeout(() => {
 			setDisplayL("none");
 			setConteudoL(<ArcadeMaquininha />);
-			setLogado("true");
+			setLogado(true);
 		}, time)
 
 		return (
@@ -349,7 +302,7 @@ function Login() {
 		<div>
 			<title>Tela de Login</title>
 			<div style={{"display": display}}>
-				<ArcadeMaquininha />
+				<Maquininha />
 			</div>
 			{conteudo}
 		</div>
