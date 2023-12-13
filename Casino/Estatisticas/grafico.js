@@ -152,10 +152,12 @@ else {
 			x = (x-gap)/gap;
 
 			let trig = false;
-
+console.log("start");
 			for (let i = 0; i < tamanho; i++) {
 				id = idd[i]-1;
+				console.log("nokay");
 				for (let j = 0; j < colunas; j++) {
+					console.log("nokay");
 					if ((pontos[id][j].y-5 <= y && y <= pontos[id][j].y+9) && (pontos[id][j].x-0.12 <= x && x <= pontos[id][j].x+0.6)) {
 						let valor = valores[id][j].y;
 						if (valor < 0) {
@@ -165,12 +167,16 @@ else {
 						else
 							alert("$"+valor);
 						trig = true;
+						console.log("okay");
 						break;
 					}
+					if (trig)
+						break;
 				}
 				if (trig)
 					break;
 			}
+console.log("out");
 		});
 
   	});

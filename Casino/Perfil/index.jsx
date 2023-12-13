@@ -26,6 +26,7 @@ function Perfil() {
 		const [date,setDate] = useState("");
 		const [senha,setSenha] = useState("");
 		const [csenha,setCSenha] = useState("");
+		const [novaSenha,setNSenha] = useState("");
 		const [lingua,setLingua] = useState("");
 		const [animacao,setAnimacao] = useState();
 		const [som,setSom] = useState();
@@ -42,6 +43,8 @@ function Perfil() {
 					setNome(jgr.nome);
 					setEmail(jgr.email);
 					setSenha(jgr.senha);
+					setNSenha(jgr.senha);
+					setCSenha(jgr.senha);
 					setImagem(jgr.imagem);
 					setLingua(jgr.lingua);
 					setAnimacao(jgr.animacao);
@@ -66,8 +69,8 @@ function Perfil() {
 			setMudanca(true);
 		}
 
-		const upSenha = (e) => {
-			setSenha(e.target.value);
+		const upNSenha = (e) => {
+			setNSenha(e.target.value);
 			setMudanca(true);
 		}
 
@@ -92,11 +95,14 @@ function Perfil() {
 				alert("Senha errada");
 				return "No soccess";
 			}	
-			let jogador = {id: id, nome: nome, email: email, senha: senha, saldo: 0, imagem: imagem, lingua: lingua, animacao: animacao, som: som, valores: valores};
+			let jogador = {id: id, nome: nome, email: email, senha: novaSenha, saldo: 0, imagem: imagem, lingua: lingua, animacao: animacao, som: som, valores: valores};
             console.log("jogador => "+JSON.stringify(jogador));
             JogadorService.adicionarJogador(jogador).then(res => {
-                alert("Ye boi");
+                alert("Dados alterados!");
             });
+			setSenha(jogador.senha);
+			setCSenha("");
+			setMudanca(false);
 			return "soccess";
 		}
 		
@@ -134,7 +140,7 @@ function Perfil() {
 								</div>		                 
 								<div className="labels">
 									<label id="lsenha">Senha</label>
-									<input className="campos" type="password" value={senha} onChange={upSenha} />
+									<input className="campos" type="password" value={novaSenha} onChange={upNSenha} />
 								</div>
 							{/*	<div className="labels">
 									<label id="lcsenha">Confirmar Senha</label>

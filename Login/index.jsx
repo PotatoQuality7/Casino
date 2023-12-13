@@ -295,7 +295,7 @@ function Login() {
 			let jogador = {nome: nome, email: email, senha: senha, saldo: 0, imagem: imagem, lingua: "pt", animacao: true, som: 100, valores: [[0,0],[0,0],[0,0]]};
 				console.log("jogador => "+JSON.stringify(jogador));
 				JogadorService.adicionarJogador(jogador).then(res => {
-					alert("Ye boi");
+					alert("Cadastrado com sucesso");
 				});
 
 			setDisplayL("none");
